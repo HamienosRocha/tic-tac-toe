@@ -1,0 +1,95 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-line: teal;
+  --color-circle: #0a5991;
+  --color-cross: tomato;
+
+  --width-cell: 7rem;
+  --height-cell: 7rem;
+  --border-line: 4px;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+.container-app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#gameboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.cell-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--width-cell);
+  height: var(--height-cell);
+  cursor: pointer;
+}
+
+.cell-box:nth-child(3n):not(:nth-child(9)) {
+  border-bottom: var(--border-line) solid var(--color-line);
+}
+
+.cell-box:not(:nth-child(3n)) {
+  border-bottom: var(--border-line) solid var(--color-line);
+  border-right: var(--border-line) solid var(--color-line);
+}
+
+.cell-box:nth-child(7), .cell-box:nth-child(8) {
+  border-bottom: 0 !important;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--width-cell) - 2rem);
+  height: calc(var(--height-cell) - 2rem);
+  border: 8px solid var(--color-circle);
+  border-radius: 50%;
+}
+
+.cross {
+  position: relative;
+  width: calc(var(--width-cell) - 2rem);
+  height: calc(var(--height-cell) - 2rem);
+  transform: rotate(45deg);
+}
+
+.cross::before, .cross::after {
+  content: '';
+  background-color: var(--color-cross);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 8px;
+  border-radius: 0.3rem;
+  transform: translateX(-50%);
+}
+
+.cross::before{
+  height: 100%;
+  width: 8px;
+}
+
+.cross::after {
+  height: 8px;
+  width: 100%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
