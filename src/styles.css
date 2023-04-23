@@ -5,12 +5,14 @@
 }
 
 :root {
-  --color-line: teal;
+  --color-border: teal;
   --color-circle: #0a5991;
   --color-cross: tomato;
+  --color-line: #fff;
 
   --width-cell: 7rem;
   --height-cell: 7rem;
+  --height-line: 9px;
   --border-line: 4px;
 }
 
@@ -20,6 +22,7 @@ body {
 }
 
 .container-app {
+  background-color: #1d1d1d;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +34,49 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.container-gameboard {
+  position: relative;
+}
+
+.vertical-line {
+  background-color: var(--color-line);
+  position: absolute;
+  width: var(--height-line);
+  height: 100%;
+  border-radius: 0.3rem;
+}
+
+.horizontal-line {
+  background-color: var(--color-line);
+  position: absolute;
+  width: 100%;
+  height: var(--height-line);
+  border-radius: 0.3rem;
+}
+
+.diagonal-line-1,
+.diagonal-line-2 {
+  content: '';
+  background-color: var(--color-line);
+  position: absolute;
+  width: var(--height-line);
+  height: 138%;
+  top: 0;
+  left: 50%;
+  border-radius: 0.3rem;
+}
+
+.diagonal-line-1 {
+  transform: translateX(-50%) rotate(45deg);
+  top: -20%;
+}
+
+.diagonal-line-2 {
+  transform: translateX(-50%) rotate(315deg);
+  top: -20%;
+}
+
+
 .cell-box {
   display: flex;
   align-items: center;
@@ -41,15 +87,16 @@ body {
 }
 
 .cell-box:nth-child(3n):not(:nth-child(9)) {
-  border-bottom: var(--border-line) solid var(--color-line);
+  border-bottom: var(--border-line) solid var(--color-border);
 }
 
 .cell-box:not(:nth-child(3n)) {
-  border-bottom: var(--border-line) solid var(--color-line);
-  border-right: var(--border-line) solid var(--color-line);
+  border-bottom: var(--border-line) solid var(--color-border);
+  border-right: var(--border-line) solid var(--color-border);
 }
 
-.cell-box:nth-child(7), .cell-box:nth-child(8) {
+.cell-box:nth-child(7),
+.cell-box:nth-child(8) {
   border-bottom: 0 !important;
 }
 
@@ -70,7 +117,8 @@ body {
   transform: rotate(45deg);
 }
 
-.cross::before, .cross::after {
+.cross::before,
+.cross::after {
   content: '';
   background-color: var(--color-cross);
   position: absolute;
@@ -82,7 +130,7 @@ body {
   transform: translateX(-50%);
 }
 
-.cross::before{
+.cross::before {
   height: 100%;
   width: 8px;
 }
