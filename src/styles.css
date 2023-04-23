@@ -24,9 +24,15 @@ body {
 .container-app {
   background-color: #1d1d1d;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.game-info {
+  color: #fff;
+  margin-bottom: 1rem;
 }
 
 #gameboard {
@@ -36,6 +42,11 @@ body {
 
 .container-gameboard {
   position: relative;
+}
+
+.container-actions {
+  display: none;
+  margin-top: 1rem;
 }
 
 .vertical-line {
